@@ -1,0 +1,27 @@
+kkj:
+  target: default
+  outputs:
+    default:
+      type: duckdb
+      path: ":memory:"
+      database: kkj
+      schema: main
+      threads: 1
+      extensions:
+        - httpfs
+        - ducklake
+        - sqlite
+      # fdl checkout が作った作業場のカタログ (SQLite) に書く。新しいデータファイルは
+      # FDL_DATA_PATH (data.queria.io から取り出したときは手元のフォルダ) に書き、
+      # fdl commit が上げる (shared/scripts/build-fdl.sh)
+      attach:
+        - path: "ducklake:{{ env_var('FDL_WORKING') }}"
+          alias: kkj
+          is_ducklake: true
+          options:
+            DATA_PATH: "{{ env_var('FDL_DATA_PATH') }}"
+            OVERRIDE_DATA_PATH: true
+            META_TYPE: "'sqlite'"
+            # 既定のままだと小さいテーブルがカタログの中に収まり parquet が
+            # 1 つも生成されない。fdl commit はインライン化された行を断るので、常に切る
+            DATA_INLINING_ROW_LIMIT: 0

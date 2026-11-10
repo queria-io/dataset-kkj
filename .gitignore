@@ -1,0 +1,24 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+
+# dbt
+target/
+dbt_packages/
+dbt_internal_packages/
+logs/
+.user.yml
+package-lock.yml
+
+# DuckLake
+.queria/
+
+# Environment
+.env
+
+dist/
+
+# 取得したオープンデータ (毎回取り直すのでコミットしない)
+data/
+.fdl/

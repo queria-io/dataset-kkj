@@ -1,0 +1,24 @@
+name: Build
+
+# 公開せずにパイプラインと dbt build だけを回す。API の形が変わったときに Sync より先に気づくため。
+# FDL_WORKING を渡さないので、直近の 4 日分だけを取る
+on:
+  pull_request:
+  workflow_dispatch:
+
+concurrency:
+  group: build-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          submodules: true
+      - uses: astral-sh/setup-uv@v7
+      - run: uv sync
+      - run: uv run python -c "import main; main.download_kkj()"
+      - run: uv run dbt build --profiles-dir ci
