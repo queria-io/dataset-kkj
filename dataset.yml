@@ -22,6 +22,14 @@ keywords:
 - 中小企業庁
 homepage: https://github.com/queria-io/dataset-kkj
 language: ja
+# ポータルの利用規約はライセンスを定めていない。API を使う条件（利用の明記とリンク）を書く
+licenses:
+- id: JP-KKJ-API
+  title: 官公需情報ポータルサイト 利用規約（API の利用）
+  url: https://www.kkj.go.jp/s/?tc=1
+  commercial_use: true
+  share_alike: false
+  attribution_required: true
 sources:
 - title: 官公需情報ポータルサイト
   path: https://www.kkj.go.jp/s/
