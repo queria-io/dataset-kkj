@@ -1,0 +1,9 @@
+# PR のビルド確認用。公開ストレージには書かず、手元の DuckDB ファイルに作る
+kkj:
+  target: default
+  outputs:
+    default:
+      type: duckdb
+      path: target/kkj.duckdb
+      schema: main
+      threads: 1

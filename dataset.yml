@@ -1,0 +1,46 @@
+# この dataset.yml は fdl commit が読む（FDL の dataset.json を YAML で書いたもの）。
+# 表の説明は models/ の *.table.yml に書く。表と列の型・NULL・行数は fdl commit がカタログから埋める。
+# Queria だけの項目（テーマ・カバー・列の意味）は annotations.queria に書く。
+name: kkj
+title: 官公需情報ポータルサイト 入札公告
+description: |-
+  国の機関・独立行政法人・地方公共団体が出した入札公告です。官公需情報ポータルサイト（中小企業庁）が各機関のサイトから集めた公告を、件名・発注機関・都道府県と市区町村・カテゴリー・入札日・開札日・公告文で検索できる形にしています。2021 年 4 月以降の公告を収録し、毎日更新します。
+
+  落札者と落札金額は含みません。
+
+  出典：官公需情報ポータルサイト（https://www.kkj.go.jp/s/）の検索 API を利用して Queria が取得・加工したものです。公告の権利は各発注機関にあります。
+keywords:
+- 入札
+- 入札公告
+- 官公需
+- 公共調達
+- 一般競争入札
+- 工事
+- 物品
+- 役務
+- 自治体
+- 中小企業庁
+homepage: https://github.com/queria-io/dataset-kkj
+language: ja
+sources:
+- title: 官公需情報ポータルサイト
+  path: https://www.kkj.go.jp/s/
+- title: 官公需情報ポータルサイト 検索 API ガイド
+  path: https://www.kkj.go.jp/doc/ja/api_guide.pdf
+contributors:
+- title: 中小企業庁
+  path: https://www.chusho.meti.go.jp/
+  roles:
+  - publisher
+spatial_coverage:
+- JP
+update_frequency: daily
+schemas:
+- name: tender
+  title: 入札公告
+annotations:
+  queria:
+    themes:
+    - government_finance
+    - economy
+    cover: 📢

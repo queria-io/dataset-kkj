@@ -1,0 +1,82 @@
+schema: tender
+name: notices
+title: 入札公告
+description: |-
+  官公需情報ポータルサイトに載った入札公告です。1 行が 1 公告で、公告日の順に並びます。
+
+  - ポータルが各機関のサイトから集めたものなので、すべての機関・公告を網羅しているわけではありません
+  - カテゴリー・公示種別・入札日・開札日などは、多くの公告で NULL です（原典に無い）
+  - 公告文（description）は原典の PDF や HTML から抜き出した文字です。画像の公告では空のことがあります
+primary_key: [notice_key]
+sources:
+  - path: https://www.kkj.go.jp/s/
+fields:
+  - name: notice_key
+    title: 公告キー
+    description: 官公需情報ポータルサイトが公告ごとに付けたキー
+  - name: project_name
+    title: 件名
+  - name: organization_name
+    title: 発注機関
+    description: 原典の組織名のまま（国土交通省、千葉県千葉市 など）
+    annotations: { queria: { semantic: { role: dimension } } }
+  - name: prefecture_code
+    title: 都道府県コード
+    description: 2 桁。国の機関などで NULL のことがあります
+    annotations: { queria: { semantic: { role: entity, name: prefecture } } }
+  - name: prefecture_name
+    title: 都道府県名
+  - name: lg_code
+    title: 全国地方公共団体コード
+    description: 6 桁。市区町村の公告で入っています
+  - name: city_code
+    title: 市区町村コード
+    description: lg_code の先頭 5 桁
+    annotations: { queria: { semantic: { role: entity, name: city } } }
+  - name: city_name
+    title: 市区町村名
+  - name: category
+    title: カテゴリー
+    description: 物品・工事・役務。原典の文字のまま
+    annotations: { queria: { semantic: { role: dimension } } }
+  - name: procedure_type
+    title: 公示種別
+    description: 一般競争入札 など。原典の文字のまま
+    annotations: { queria: { semantic: { role: dimension } } }
+  - name: certifications
+    title: 入札参加資格の等級
+    description: A・B・C・D の配列
+  - name: location
+    title: 履行場所
+  - name: item_code
+    title: 品目分類番号
+  - name: cft_issue_date
+    title: 公告日
+    description: 原典に公告日が無いときは、ポータルが公告を取得した日
+  - name: tender_submission_date
+    title: 入札開始日
+  - name: opening_tenders_date
+    title: 開札日
+  - name: period_end_date
+    title: 納入期限日
+  - name: description
+    title: 公告文
+    description: 公告の全文。公告以外の文が混ざることがあります
+  - name: document_url
+    title: 公告の URL
+    description: 発注機関のサイトにあった公告の URL。今もあるとは限りません
+  - name: file_type
+    title: 公告のファイル種別
+    description: pdf か html
+  - name: file_size
+    title: 公告のファイルサイズ
+    description: バイト
+  - name: attachments
+    title: 添付ファイル
+    description: name（リンクの文字）と uri の配列
+  - name: crawled_at
+    title: ポータルの取得日時
+    description: 官公需情報ポータルサイトが公告を取得した日時
+  - name: fetched_at
+    title: 取得日時
+    description: Queria が API から取得した日時

@@ -1,0 +1,23 @@
+name: Sync
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "*.md"
+  schedule:
+    - cron: "0 20 * * *" # 毎日 05:00 JST
+  workflow_dispatch:
+
+concurrency:
+  group: sync
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    uses: queria-io/dataset-shared/.github/workflows/sync.yml@main
+    with:
+      dataset_name: kkj
+      # 過去分は 1 回に 180 日分（2 秒おきに 200 回ほど）を取る
+      timeout_minutes: 120
+    secrets: inherit

@@ -1,0 +1,21 @@
+name: "kkj"
+version: "1.0.0"
+
+profile: "kkj"
+
+model-paths: ["models"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+seed-paths: ["seeds"]
+macro-paths: ["macros", "shared/macros"]
+snapshot-paths: ["snapshots"]
+
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+models:
+  kkj:
+    +database: kkj
+    tender:
+      +materialized: table
