@@ -47,10 +47,16 @@ EVERYTHING = "NOT zzqqxxnone"
 SPLIT_TERMS = ["工事", "業務", "委託", "購入", "賃貸借", "保守", "令和", "一般競争入札"]
 
 
+def decode(body: bytes) -> str:
+    """API の本文。BMP の外の文字がサロゲートペアの 3 バイトずつ (CESU-8) で届くことがあるので、組み直す"""
+    text = body.decode("utf-8", "surrogatepass")
+    return text.encode("utf-16", "surrogatepass").decode("utf-16", "replace")
+
+
 def search(query: str, day: date) -> ET.Element:
     time.sleep(INTERVAL_SECONDS)
     params = {"Query": query, "CFT_Issue_Date": day.isoformat(), "Count": PAGE_LIMIT}
-    root = ET.fromstring(fetch(f"{API}?{urlencode(params)}", user_agent=USER_AGENT, timeout=180))
+    root = ET.fromstring(decode(fetch(f"{API}?{urlencode(params)}", user_agent=USER_AGENT, timeout=180)))
     if (error := root.findtext("Error")) is not None:
         raise RuntimeError(f"{day} {query}: {error}")
     return root
