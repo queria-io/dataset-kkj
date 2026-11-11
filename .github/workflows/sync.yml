@@ -15,9 +15,11 @@ concurrency:
 
 jobs:
   sync:
-    uses: queria-io/dataset-shared/.github/workflows/sync.yml@main
+    uses: queria-io/dataset-shared/.github/workflows/sync.yml@fe59be721647d5b1bbffe1ef3eb2d318c81be3f3
     with:
       dataset_name: kkj
       # 過去分は 1 回に 180 日分（2 秒おきに 200 回ほど）を取る
       timeout_minutes: 120
-    secrets: inherit
+    secrets:
+      QUERIA_TOKEN: ${{ secrets.QUERIA_TOKEN }}
+      DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
