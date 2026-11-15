@@ -18,4 +18,9 @@ models:
   kkj:
     +database: kkj
     tender:
-      +materialized: table
+      raw:
+        +materialized: table
+      stg:
+        +materialized: view
+      mart:
+        +materialized: table

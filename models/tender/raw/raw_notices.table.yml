@@ -1,0 +1,4 @@
+schema: tender
+name: raw_notices
+description: 直近のビルドで検索 API から取った入札公告（取得したままの形）
+annotations: { queria: { published: false } }
