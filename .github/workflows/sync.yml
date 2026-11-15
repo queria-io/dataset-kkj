@@ -19,7 +19,7 @@ jobs:
     permissions:
       contents: read
       id-token: write
-    uses: queria-io/dataset-shared/.github/workflows/sync.yml@67443c88b6ec355559c91bf866239e10073ccf83
+    uses: queria-io/dataset-shared/.github/workflows/sync.yml@609f93e1080379ab78f334483c935d65853246c9
     with:
       dataset_name: kkj
       # 過去分は 1 回に 180 日分（2 秒おきに 200 回ほど）を取る
