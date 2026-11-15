@@ -17,5 +17,10 @@ clean-targets:
 models:
   kkj:
     +database: kkj
+    +materialized: table
+    # raw は取得したまま、stg は型付けと列名の付け替え。どちらも mart の SQL に展開し、テーブルは作らない
     tender:
-      +materialized: table
+      raw:
+        +materialized: ephemeral
+      stg:
+        +materialized: ephemeral

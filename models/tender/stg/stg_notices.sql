@@ -1,0 +1,29 @@
+{# 入札公告を型付けし、列名を付け替える。並べ替えの元の公告日の文字列 (CftIssueDate) も残す #}
+
+select
+    Key as notice_key,
+    ProjectName as project_name,
+    OrganizationName as organization_name,
+    nullif(lpad(LgCode, 2, '0'), '00') as prefecture_code,
+    PrefectureName as prefecture_name,
+    CityCode as lg_code,
+    left(CityCode, 5) as city_code,
+    CityName as city_name,
+    Category as category,
+    ProcedureType as procedure_type,
+    string_split(nullif(trim(Certification), ''), ' ') as certifications,
+    Location as location,
+    ItemCode as item_code,
+    cast(left(CftIssueDate, 10) as date) as cft_issue_date,
+    cast(left(TenderSubmissionDeadline, 10) as date) as tender_submission_date,
+    cast(left(OpeningTendersEvent, 10) as date) as opening_tenders_date,
+    cast(left(PeriodEndTime, 10) as date) as period_end_date,
+    ProjectDescription as description,
+    ExternalDocumentURI as document_url,
+    FileType as file_type,
+    try_cast(FileSize as bigint) as file_size,
+    Attachments as attachments,
+    cast(Date as timestamptz) as crawled_at,
+    cast(fetched_at as timestamptz) as fetched_at,
+    CftIssueDate as cft_issue_datetime
+from {{ ref('raw_notices') }}
