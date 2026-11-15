@@ -17,6 +17,7 @@ clean-targets:
 models:
   kkj:
     +database: kkj
+    +materialized: table
     tender:
       raw:
         +materialized: table
