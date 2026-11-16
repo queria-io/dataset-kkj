@@ -20,6 +20,7 @@ keywords:
   - 中小企業庁
 homepage: https://github.com/queria-io/dataset-kkj
 language: ja
+# ポータルの利用規約はライセンスを定めていないので、登録簿に無い other として条件を書く
 licenses:
   - id: other
     title: 官公需情報ポータルサイトの API を利用している旨とポータルへのリンクを明記（利用規約）
