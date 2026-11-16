@@ -5,6 +5,8 @@ select *
 from read_json(
     'data/kkj/notices/*.ndjson.gz',
     format = 'newline_delimited',
+    -- 添付文書の本文を丸ごと ProjectDescription に持つ公告があり、1 行が 40MB を超える
+    maximum_object_size = 268435456,
     columns = {
         Key: 'VARCHAR', ExternalDocumentURI: 'VARCHAR', ProjectName: 'VARCHAR', Date: 'VARCHAR',
         FileType: 'VARCHAR', FileSize: 'VARCHAR', LgCode: 'VARCHAR', PrefectureName: 'VARCHAR',
