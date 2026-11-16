@@ -8,7 +8,8 @@ Query に「NOT 存在しない語」を指定すると、ほかの条件に合�
 
 公告は公開から 1 日ほどたって登録され、公告日より後に登録されるもの（予告）もある。
 毎回、前回取った最後の公告日の REFETCH_DAYS 日前から取り直す。初回と過去分は
-MAX_DAYS 日ずつ進め、今日まで来たら公告日が先の予告も取る。
+MAX_DAYS 日ずつ進め、今日まで来たら公告日が先の予告も取る。KKJ_START を指定すると、
+その公告日から取り直す（過去の公告日の行を置き換えたいとき）。
 
 出力: data/kkj/notices/<公告日>.ndjson.gz（1 行 = 1 公告）
 
@@ -39,6 +40,7 @@ FIRST_DAY = date(2021, 1, 1)
 REFETCH_DAYS = 30
 AHEAD_DAYS = 90
 MAX_DAYS = int(os.environ.get("KKJ_MAX_DAYS", "180"))
+START = os.environ.get("KKJ_START")
 PAGE_LIMIT = 1000
 # 利用規約は特定のサーバーからの継続した大量アクセスを禁じている。1 回ずつ間を空ける
 INTERVAL_SECONDS = 2.0
@@ -122,7 +124,10 @@ def days_to_fetch(cursor: date | None, today: date, has_catalog: bool) -> list[d
         # PR のビルド確認は直近の数日だけ
         start, end = today - timedelta(days=3), today
     else:
-        start = max(FIRST_DAY, cursor - timedelta(days=REFETCH_DAYS)) if cursor else FIRST_DAY
+        if START:
+            start = date.fromisoformat(START)
+        else:
+            start = max(FIRST_DAY, cursor - timedelta(days=REFETCH_DAYS)) if cursor else FIRST_DAY
         end = min(start + timedelta(days=MAX_DAYS - 1), today)
         if end == today:
             end = today + timedelta(days=AHEAD_DAYS)
