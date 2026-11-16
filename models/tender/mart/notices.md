@@ -1,5 +1,6 @@
-schema: tender
-name: notices
+---
+$schema: https://queria.io/schemas/table/v1.json
+table: tender.notices
 title: 入札公告
 description: |-
   官公需情報ポータルサイトに載った入札公告です。1 行が 1 公告で、公告日の順に並びます。
@@ -19,11 +20,11 @@ fields:
   - name: organization_name
     title: 発注機関
     description: 原典の組織名のまま（国土交通省、千葉県千葉市 など）
-    annotations: { queria: { semantic: { role: dimension } } }
+    semantic: {role: dimension}
   - name: prefecture_code
     title: 都道府県コード
     description: 2 桁。国の機関などで NULL のことがあります
-    annotations: { queria: { semantic: { role: entity, name: prefecture } } }
+    semantic: {role: entity, name: prefecture}
   - name: prefecture_name
     title: 都道府県名
   - name: lg_code
@@ -32,17 +33,17 @@ fields:
   - name: city_code
     title: 市区町村コード
     description: lg_code の先頭 5 桁
-    annotations: { queria: { semantic: { role: entity, name: city } } }
+    semantic: {role: entity, name: city}
   - name: city_name
     title: 市区町村名
   - name: category
     title: カテゴリー
     description: 物品・工事・役務。原典の文字のまま
-    annotations: { queria: { semantic: { role: dimension } } }
+    semantic: {role: dimension}
   - name: procedure_type
     title: 公示種別
     description: 一般競争入札 など。原典の文字のまま
-    annotations: { queria: { semantic: { role: dimension } } }
+    semantic: {role: dimension}
   - name: certifications
     title: 入札参加資格の等級
     description: A・B・C・D の配列
@@ -80,3 +81,4 @@ fields:
   - name: fetched_at
     title: 取得日時
     description: Queria が API から取得した日時
+---
