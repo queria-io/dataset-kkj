@@ -1,4 +1,4 @@
-{# 入札公告を型付けし、列名を付け替える。並べ替えの元の公告日の文字列 (CftIssueDate) も残す #}
+{# 入札公告を型付けし、列名を付け替える。並べ替えの元の公告日の文字列 (CftIssueDate) と、読んだファイルの公告日 (file_date) も残す #}
 
 select
     Key as notice_key,
@@ -25,5 +25,6 @@ select
     Attachments as attachments,
     cast(Date as timestamptz) as crawled_at,
     cast(fetched_at as timestamptz) as fetched_at,
-    CftIssueDate as cft_issue_datetime
+    CftIssueDate as cft_issue_datetime,
+    cast(regexp_extract(filename, '(\d{4}-\d{2}-\d{2})\.ndjson\.gz$', 1) as date) as file_date
 from {{ ref('raw_notices') }}
