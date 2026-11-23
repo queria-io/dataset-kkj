@@ -1,4 +1,4 @@
-$schema: https://queria.io/schemas/dataset/v1.json
+$schema: https://tabledoc.queria.io/schemas/dataset/v1.json
 name: kkj
 title: 官公需情報ポータルサイト 入札公告
 description: |-
@@ -7,7 +7,7 @@ description: |-
   落札者と落札金額は含みません。
 
   出典：官公需情報ポータルサイト（https://www.kkj.go.jp/s/）の検索 API を利用して Queria が取得・加工したものです。公告の権利は各発注機関にあります。
-keywords:
+topics:
   - 入札
   - 入札公告
   - 官公需
@@ -29,12 +29,15 @@ licenses:
     share_alike: false
     attribution_required: true
 sources:
-  - title: 官公需情報ポータルサイト
+  - id: kkj-s
+    title: 官公需情報ポータルサイト
     path: https://www.kkj.go.jp/s/
-  - title: 官公需情報ポータルサイト 検索 API ガイド
+  - id: api_guide
+    title: 官公需情報ポータルサイト 検索 API ガイド
     path: https://www.kkj.go.jp/doc/ja/api_guide.pdf
 contributors:
-  - title: 中小企業庁
+  - id: chusho
+    title: 中小企業庁
     path: https://www.chusho.meti.go.jp/
     roles:
       - publisher
@@ -44,7 +47,3 @@ update_frequency: daily
 schemas:
   - name: tender
     title: 入札公告
-themes:
-  - government_finance
-  - economy
-cover: 📢
