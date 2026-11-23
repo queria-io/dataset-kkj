@@ -32,14 +32,14 @@ licenses:
 sources:
   - id: kkj-s
     title: 官公需情報ポータルサイト
-    path: https://www.kkj.go.jp/s/
+    url: https://www.kkj.go.jp/s/
   - id: api_guide
     title: 官公需情報ポータルサイト 検索 API ガイド
-    path: https://www.kkj.go.jp/doc/ja/api_guide.pdf
+    url: https://www.kkj.go.jp/doc/ja/api_guide.pdf
 contributors:
   - id: chusho
     title: 中小企業庁
-    path: https://www.chusho.meti.go.jp/
+    url: https://www.chusho.meti.go.jp/
     roles:
       - publisher
 spatial_coverage:
