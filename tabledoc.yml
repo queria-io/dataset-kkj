@@ -7,6 +7,7 @@ description: |-
   落札者と落札金額は含みません。
 
   出典：官公需情報ポータルサイト（https://www.kkj.go.jp/s/）の検索 API を利用して Queria が取得・加工したものです。公告の権利は各発注機関にあります。
+image: cover.png
 topics:
   - 入札
   - 入札公告
