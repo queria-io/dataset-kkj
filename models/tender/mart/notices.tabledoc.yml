@@ -21,7 +21,7 @@ columns:
   - name: prefecture_code
     title: 都道府県コード
     description: 2 桁。国の機関などで NULL のことがあります
-    entity: {type: foreign, name: prefecture}
+    entity: prefecture
   - name: prefecture_name
     title: 都道府県名
   - name: lg_code
@@ -30,7 +30,7 @@ columns:
   - name: city_code
     title: 市区町村コード
     description: lg_code の先頭 5 桁
-    entity: {type: foreign, name: city}
+    entity: city
   - name: city_name
     title: 市区町村名
   - name: category
