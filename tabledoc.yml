@@ -19,7 +19,6 @@ topics:
   - 役務
   - 自治体
   - 中小企業庁
-homepage: https://github.com/queria-io/dataset-kkj
 language: ja
 # ポータルの利用規約はライセンスを定めていないので、登録簿に無い other として条件を書く
 licenses:
