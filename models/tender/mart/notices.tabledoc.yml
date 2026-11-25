@@ -17,7 +17,6 @@ columns:
   - name: organization_name
     title: 発注機関
     description: 原典の組織名のまま（国土交通省、千葉県千葉市 など）
-    dimension: categorical
   - name: prefecture_code
     title: 都道府県コード
     description: 2 桁。国の機関などで NULL のことがあります
